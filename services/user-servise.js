@@ -21,11 +21,10 @@ class UserServise {
         let hashPassword = await bcrypt.hash(password, 3)
         let activationLink = uuid.v4()
         let user = await User.create({ email, password: hashPassword, activationLink })
-        await mailService.sendActivationMain(email, activationLink)
+        await mailService.sendActivationMain(email, `${process.env.API_URL}/api/activate/${activationLink}`)
         const userDto = new UserDto(user)
         const tokens = tokenServise.generateTokens({ ...userDto })
         await tokenServise.saveToken(userDto.id, tokens.refreshToken)
-
         return  { ...tokens, user: userDto}
     }
 }
