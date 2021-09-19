@@ -23,20 +23,12 @@ class MainServise {
         await this.trasport.sendMail({
             from: '' + process.env.SMTP_USER,
             to,
-<<<<<<< HEAD
             subject: `Activation account ${'' + process.env.API_URL}`,
-=======
-            subject: `Активация аккаунта на ${'' + process.env.API_URL}`,
->>>>>>> 63523a9065d7d2cc34c0028921693d5ce030f02b
             text: '',
             html: 
                 `
                     <div>
-<<<<<<< HEAD
                         <h1>Activation</h1>
-=======
-                        <h1>Для активации перейдите по ссылке</h1>
->>>>>>> 63523a9065d7d2cc34c0028921693d5ce030f02b
                         <a href='${link}'>${link}</a>
                     </div>
                 `    
