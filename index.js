@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 const routerLog = require('./routers/router-log')
 const bodyParser = require("body-parser")
+const Error = require("./middlewares/error")
 
 // Default Variebles
 
@@ -23,6 +24,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
+app.use(Error)
 app.use('/api', routerLog)
 
 // Default function => "start"
