@@ -2,6 +2,7 @@
 // Modules
 
 const jwt = require("jsonwebtoken")
+const tokenModel = require("../models/token-model")
 
 // Create class UserServise
 

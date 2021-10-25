@@ -7,7 +7,7 @@ const { check } = require("express-validator")
 
 // Making Request
 
-router.post('/registration', [ check('email', 'Invalid Email').isEmail(), check('password', 'Wrong Password').isLength({ min: 6 }) ], request.requestRegistPage)
+router.post('/register', [ check('email', 'Invalid Email').isEmail(), check('password', 'Wrong Password').isLength({ min: 6 }) ], request.requestRegistPage)
 router.post('/login', [ check('email', 'Invalid Email').isEmail().normalizeEmail(), check('password', 'Wrong Password').exists() ], request.requestLoginPage)
 router.post('/logout', request.requestLogoutPage)
 router.get('/activate/:link')

@@ -1,0 +1,15 @@
+.footer {
+    background: whitesmoke;
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .footer__inner {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        a {
+            color: black;
+        }
+    }
+}
