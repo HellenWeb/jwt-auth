@@ -6,6 +6,7 @@ export const useHttp = () => {
     
     const request = useCallback( async (url, method = 'GET', body = null, headers = {}) => {
         try {
+            setLoading(true)
 
             if (body) {
                 body = JSON.stringify(body)
@@ -28,7 +29,7 @@ export const useHttp = () => {
         }
     })
 
-    const clear = () => setError(null)
+    const cleanError = () => setError(null)
 
-    return {loading, request}
+    return {loading, request, error, cleanError}
 }

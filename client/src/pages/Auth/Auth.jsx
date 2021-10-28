@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect , useContext} from 'react'
 import Footer from '../../components/Footer/Footer'
 import { NavbarAuth } from '../../components/Navbar/Navbar-Auth'
 import { useHttp } from '../../hooks/http.hook'
 import { useMessage } from '../../hooks/message.hook'
+import { AuthContext } from '../../context/AuthContext'
 import 'materialize-css'
 import './auth-style.scss'
 
 export const Auth = () => {
+    let auth = useContext(AuthContext)
     const message = useMessage()
     const {loading, error, request, cleanError} = useHttp()
     const [form, setForm] = useState({
@@ -25,6 +27,14 @@ export const Auth = () => {
         try {
             const data = await request('/api/register', 'POST', {...form})
             console.log(data);
+            message(data.message)
+        } catch (e) {}
+    }
+
+    const loginHandler = async () => {
+        try {
+            let data = request('/api/login', 'POST', {...form})
+            auth.login(data.token, data.userId)
         } catch (e) {}
     }
     return (
@@ -49,8 +59,8 @@ export const Auth = () => {
                             </form>
                         </div>
                         <div style={{textAlign: 'center'}}>
-                            <a type="submit" class="waves-effect waves-light btn" onClick={registerHandler} disabled={loading} style={{marginRight: '10px'}}>Registration</a>
-                            <a type="submit" class="waves-effect waves-light btn" href="/">Login</a>
+                            <button class="waves-effect waves-light btn" onClick={registerHandler} disabled={loading} style={{marginRight: '10px'}}>Registration</button>
+                            <button class="waves-effect waves-light btn" onClick={loginHandler} disabled={loading} >Login</button>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import {useCallback} from 'react'
-import 'materialize-css'
+import M from 'materialize-css'
 
 export const useMessage = () => {
     return useCallback(text => {
